@@ -5014,6 +5014,62 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cliente/cliente.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cliente/cliente.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      ingreso_id: this.$route.params.id,
+      datos: {}
+    };
+  },
+  created: function created() {
+    this.traer_ingreso();
+  },
+  methods: {
+    traer_ingreso: function traer_ingreso() {
+      var _this = this;
+
+      axios.get('api/ingreso_vehiculo/' + this.ingreso_id).then(function (res) {
+        _this.datos = res.data[0];
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/outer.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/outer.vue?vue&type=script&lang=js& ***!
@@ -103511,7 +103567,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "el-row",
-        { attrs: { type: "flex", justify: "center" } },
+        { attrs: { gutter: 10, type: "flex", justify: "center" } },
         [
           _c("el-col", { attrs: { xs: 24, sm: 12, md: 12, lg: 12, xl: 24 } }, [
             _c(
@@ -103632,14 +103688,69 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticStyle: { width: "100%" } },
     [
-      _c("br"),
-      _vm._v(" "),
-      _c("el-card", [
-        _vm._v(
-          "\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur rem fuga mollitia, itaque saepe odio asperiores animi, eligendi, facere labore necessitatibus ea dolorum? Dolores hic, modi totam eos ducimus exercitationem.\n    "
-        )
-      ])
+      _c(
+        "el-row",
+        { attrs: { gutter: 10, type: "flex", justify: "center" } },
+        [
+          _c(
+            "el-col",
+            { attrs: { sm: 15, md: 15 } },
+            [
+              _c("el-card", { staticClass: "box-card" }, [
+                _c("h3", [_vm._v("Panel de llegada")]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("label", [
+                  _c("b", [_vm._v("Codigo:")]),
+                  _vm._v(" " + _vm._s(_vm.datos.id) + " ")
+                ]),
+                _c("br"),
+                _vm._v(" "),
+                _c("label", [
+                  _c("b", [_vm._v("Patente:")]),
+                  _vm._v(" " + _vm._s(_vm.datos.patente) + " ")
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("label", [
+                  _c("b", [_vm._v("Codigo:")]),
+                  _vm._v(" " + _vm._s(_vm.datos.tipo) + " ")
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("label", [
+                  _c("b", [_vm._v("Fecha:")]),
+                  _vm._v(" " + _vm._s(_vm.datos.fecha) + " ")
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("label", [
+                  _c("b", [_vm._v("Hora de llegada:")]),
+                  _vm._v(" " + _vm._s(_vm.datos.hora_llegada) + " ")
+                ]),
+                _vm._v(" "),
+                _c("label", [
+                  _c("b", [_vm._v("Hora Actual:")]),
+                  _vm._v(" " + _vm._s(_vm.datos.hora_actual) + " ")
+                ]),
+                _vm._v(" "),
+                _c("label", [
+                  _c("b", [_vm._v("Tiempo transcurrido:")]),
+                  _vm._v(" " + _vm._s(_vm.datos.diferencia) + " ")
+                ])
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )
@@ -119292,15 +119403,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cliente_vue_vue_type_template_id_5d69f8ea___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cliente.vue?vue&type=template&id=5d69f8ea& */ "./resources/js/components/cliente/cliente.vue?vue&type=template&id=5d69f8ea&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _cliente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cliente.vue?vue&type=script&lang=js& */ "./resources/js/components/cliente/cliente.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _cliente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _cliente_vue_vue_type_template_id_5d69f8ea___WEBPACK_IMPORTED_MODULE_0__["render"],
   _cliente_vue_vue_type_template_id_5d69f8ea___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -119314,6 +119427,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/cliente/cliente.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/cliente/cliente.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/cliente/cliente.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_cliente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./cliente.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cliente/cliente.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_cliente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -119458,9 +119585,9 @@ var routes = [{
     path: '/',
     component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }, {
-    name: 'cliente',
-    path: '/cliente_servicio/:id',
-    Component: _components_cliente_cliente_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    name: 'cliente_servicio',
+    path: 'cliente_servicio/:id',
+    component: _components_cliente_cliente_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   }]
 }, {
   path: '/home',

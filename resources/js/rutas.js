@@ -23,10 +23,10 @@ const routes = [
         component: HomeComponent
       },
       {
-        name: 'cliente',
-        path:'/cliente_servicio/:id',
-        Component: Cliente_servicio
-      }
+        name: 'cliente_servicio',
+        path: 'cliente_servicio/:id',
+        component: Cliente_servicio
+      },
      
     ]
   },

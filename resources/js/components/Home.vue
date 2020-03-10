@@ -1,7 +1,7 @@
 <template>
   <div style="width:100%">
     <br>
-    <el-row type="flex" justify="center">
+    <el-row :gutter="10" type="flex" justify="center">
        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="24">
          <!-- <div class="trans" style="z-index:1;filter:alpha(opacity=60);float:left;-moz-opacity:.60;opacity:.60">
            
