@@ -239,7 +239,7 @@ export default {
                     
                     // printJS('imprimir', 'html')
                     this.boucher = res.data.ingreso;
-                    this.url_value =res.data.server.SERVER_NAME+ '/cliente_servicio/'+res.data.ingreso.id
+                    this.url_value =res.data.server.SERVER_NAME+ '/#/cliente_servicio/'+res.data.ingreso.id
 
                     setTimeout(() => { 
                         document.getElementById('imprimir').setAttribute("style", "display:block");

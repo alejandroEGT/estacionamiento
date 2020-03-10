@@ -4882,7 +4882,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
           _this.boucher = res.data.ingreso;
-          _this.url_value = res.data.server.SERVER_NAME + '/cliente_servicio/' + res.data.ingreso.id;
+          _this.url_value = res.data.server.SERVER_NAME + '/#/cliente_servicio/' + res.data.ingreso.id;
           setTimeout(function () {
             document.getElementById('imprimir').setAttribute("style", "display:block");
             printJS('imprimir', 'html');
