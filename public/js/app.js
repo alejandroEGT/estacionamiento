@@ -5145,7 +5145,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       ingreso_id: this.$route.params.id,
-      datos: {}
+      datos: {},
+      tarifa: {}
     };
   },
   created: function created() {
@@ -5157,6 +5158,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('api/ingreso_vehiculo/' + this.ingreso_id).then(function (res) {
         _this.datos = res.data.lista[0];
+        _this.tarifa = res.data.tarifa;
       });
     }
   }
@@ -104037,7 +104039,15 @@ var render = function() {
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
-                _c("small", [_vm._v("T")])
+                _c("small", [
+                  _vm._v(
+                    "Valor de tarifa $" +
+                      _vm._s(_vm.tarifa.valor) +
+                      " cada " +
+                      _vm._s(_vm.tarifa.minutos) +
+                      " Min(s). "
+                  )
+                ])
               ])
             ],
             1

@@ -16,7 +16,7 @@
                         <br>
                         <label><b>Monto:</b> {{ datos.monto }}</label>
                         <br>
-                        <small>T</small>
+                        <small>Valor de tarifa ${{ tarifa.valor }} cada {{tarifa.minutos}} Min(s). </small>
                     </el-card>
         </el-col>
     </el-row>
@@ -31,7 +31,8 @@ export default {
     data(){
         return{
             ingreso_id : this.$route.params.id,
-            datos:{}
+            datos:{},
+            tarifa:{}
         }
     },
     created(){
@@ -42,6 +43,7 @@ export default {
         traer_ingreso(){
             axios.get('api/ingreso_vehiculo/'+this.ingreso_id).then((res)=>{
                 this.datos = res.data.lista[0];
+                this.tarifa = res.data.tarifa;
             });
         }
     }
