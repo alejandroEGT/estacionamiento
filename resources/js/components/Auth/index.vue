@@ -5,6 +5,9 @@
         <el-col :sm="15" :md="15">
             <el-card class="box-card">
                 <div >
+                    <el-button @click="url('config_tiempo')" type="text">
+                          <i class="fas fa-clock"></i>
+                    </el-button>
                     <el-row :gutter="10" >
                        <el-col :xs="8" :sm="8" :md="8">
                            <center style="font-size:30px;color:green"><b>Disponible</b></center>
@@ -251,6 +254,21 @@ export default {
                 }
             });
             // this.print();
+        },
+         url_params(name, json){
+    		this.$router.push({name:name, params:json}).catch(error => {
+			  if (error.name != "NavigationDuplicated") {
+			    throw error;
+			  }
+			});
+        },
+
+        url(name){
+    		this.$router.push({name:name}).catch(error => {
+			  if (error.name != "NavigationDuplicated") {
+			    throw error;
+			  }
+			});
         },
 
         // print () {

@@ -13,6 +13,10 @@
                         <label><b>Hora de llegada:</b> {{ datos.hora_llegada }} </label>
                         <label><b>Hora Actual:</b> {{ datos.hora_actual }} </label>
                         <label><b>Tiempo transcurrido:</b> {{ datos.diferencia }} </label>
+                        <br>
+                        <label><b>Monto:</b> {{ datos.monto }}</label>
+                        <br>
+                        <small>T</small>
                     </el-card>
         </el-col>
     </el-row>
@@ -37,7 +41,7 @@ export default {
     methods:{
         traer_ingreso(){
             axios.get('api/ingreso_vehiculo/'+this.ingreso_id).then((res)=>{
-                this.datos = res.data[0];
+                this.datos = res.data.lista[0];
             });
         }
     }

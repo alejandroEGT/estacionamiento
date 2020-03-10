@@ -27,4 +27,6 @@ Route::group(['middleware' => 'auth.jwt'], function () {
      Route::post('auth/logout', 'AuthController@logout');
 
      Route::post('ingreso','IngresovehiculoController@ingreso');
+     Route::post('registrar_tarifa','IngresovehiculoController@registrar_tarifa');
+     
 });

@@ -3,8 +3,11 @@ import HomeComponent from './components/Home.vue';
 import NotFound from './components/404.vue';
 import Cliente_servicio from './components/cliente/cliente.vue';
 
+
+
 import Auth from './components/Auth/auth.vue';
 import Index from './components/Auth/index.vue';
+import Config_tiempo from './components/Auth/config_tiempo.vue';
 // import { Component } from 'react';
 
 const routes = [
@@ -27,6 +30,9 @@ const routes = [
         path: 'cliente_servicio/:id',
         component: Cliente_servicio
       },
+      
+
+      
      
     ]
   },
@@ -41,6 +47,11 @@ const routes = [
     children: [
 
         { path: '/index', component: Index, name: 'Index' },
+        {
+          name: 'config_tiempo',
+          path: '/config_tiempo',
+          component: Config_tiempo
+        },
         // { path: '/mi-perfil', component: MiPerfil, name: 'miPerfil' },
 
     ]
