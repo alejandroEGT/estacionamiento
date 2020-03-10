@@ -22,7 +22,7 @@ class ClienteController extends Controller
                             to_char(fecha,'dd/MM/YYYY') fecha,
                             hora hora_llegada,
                             to_char(now(),'HH24:MI:SS') hora_actual,
-                            to_char((now()::TIME-hora),'HH:MI:SS') diferencia,
+                            to_char((now()::TIME-hora),'HH24:MI:SS') diferencia,
                             now()
                         from ingreso_vehiculo where id = $id");
 
