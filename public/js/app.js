@@ -103633,6 +103633,8 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("br"),
+      _vm._v(" "),
       _c("el-card", [
         _vm._v(
           "\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur rem fuga mollitia, itaque saepe odio asperiores animi, eligendi, facere labore necessitatibus ea dolorum? Dolores hic, modi totam eos ducimus exercitationem.\n    "
