@@ -103630,7 +103630,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n\n    Agarralo a dos manos :)\n    \n\n")])
+  return _c(
+    "div",
+    [
+      _c("el-card", [
+        _vm._v(
+          "\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur rem fuga mollitia, itaque saepe odio asperiores animi, eligendi, facere labore necessitatibus ea dolorum? Dolores hic, modi totam eos ducimus exercitationem.\n    "
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
