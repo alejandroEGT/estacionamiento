@@ -27,9 +27,32 @@ Vue.use(VueAxios, axios);
 import VueAuth from '@websanova/vue-auth'
 
 
+
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(ElementUI);
+// Vue.use(ElementUI);
+
+import elementLocale from 'element-ui/lib/locale/lang/es';
+// Vue.use(ElementUI, { locale: elementLocale });
+Vue.use(ElementUI, { locale: elementLocale });
+
+
+
+import VueHtmlToPaper from 'vue-html-to-paper';
+const options = {
+  name: '_blank',
+  specs: [
+    'fullscreen=yes',
+    'titlebar=yes',
+    'scrollbars=yes'
+  ],
+  styles: [
+    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+    'https://unpkg.com/kidlat-css/css/kidlat.css'
+  ]
+}
+
+Vue.use(VueHtmlToPaper, options);
 
 
 const router = new VueRouter({

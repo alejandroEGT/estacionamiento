@@ -18,6 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['middleware' => 'auth.jwt'], function () {
+Route::post('auth/login', 'AuthController@login');
 
+Route::group(['middleware' => 'auth.jwt'], function () {
+     Route::get('auth/user', 'AuthController@user');
+     Route::post('auth/logout', 'AuthController@logout');
+
+     Route::post('ingreso','IngresovehiculoController@ingreso');
 });
