@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
  Route::get('ingreso_vehiculo/{id}','ClienteController@listar');
+ Route::get('test','ClienteController@test');
 
 
 Route::post('auth/login', 'AuthController@login');

@@ -5160,6 +5160,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.datos = res.data.lista[0];
         _this.tarifa = res.data.tarifa;
       });
+    },
+    formatPrice: function formatPrice(value) {
+      var val = (value / 1).toFixed(0).replace('.', ',');
+      return '$ ' + val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
   }
 });
@@ -104002,39 +104006,41 @@ var render = function() {
                 _c("br"),
                 _vm._v(" "),
                 _c("label", [
-                  _c("b", [_vm._v("Codigo:")]),
+                  _c("b", [_vm._v("Tipo:")]),
                   _vm._v(" " + _vm._s(_vm.datos.tipo) + " ")
                 ]),
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
                 _c("label", [
-                  _c("b", [_vm._v("Fecha:")]),
-                  _vm._v(" " + _vm._s(_vm.datos.fecha) + " ")
+                  _c("b", [_vm._v("Fecha y hora de llegada:")]),
+                  _vm._v(" " + _vm._s(_vm.datos.fecha) + " "),
+                  _c("b", { staticStyle: { color: "#5499C7" } }, [
+                    _vm._v(_vm._s(_vm.datos.hora_llegada))
+                  ])
                 ]),
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
                 _c("label", [
-                  _c("b", [_vm._v("Hora de llegada:")]),
-                  _vm._v(" " + _vm._s(_vm.datos.hora_llegada) + " ")
+                  _c("b", [_vm._v("Fecha y hora actual:")]),
+                  _vm._v(" " + _vm._s(_vm.datos.fecha_actual) + " "),
+                  _c("b", { staticStyle: { color: "#5499C7" } }, [
+                    _vm._v(_vm._s(_vm.datos.hora_actual))
+                  ])
                 ]),
-                _vm._v(" "),
-                _c("label", [
-                  _c("b", [_vm._v("Hora Actual:")]),
-                  _vm._v(" " + _vm._s(_vm.datos.hora_actual) + " ")
-                ]),
+                _c("br"),
                 _vm._v(" "),
                 _c("label", [
                   _c("b", [_vm._v("Tiempo transcurrido:")]),
-                  _vm._v(" " + _vm._s(_vm.datos.diferencia) + " ")
+                  _vm._v(" " + _vm._s(_vm.datos.intervalo) + " ")
                 ]),
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
                 _c("label", [
                   _c("b", [_vm._v("Monto:")]),
-                  _vm._v(" " + _vm._s(_vm.datos.monto))
+                  _vm._v(" " + _vm._s(_vm.formatPrice(_vm.datos.monto)))
                 ]),
                 _vm._v(" "),
                 _c("br"),

@@ -8,13 +8,13 @@
                         <hr>
                         <label><b>Codigo:</b> {{ datos.id }} </label><br>
                         <label><b>Patente:</b> {{ datos.patente }} </label> <br>
-                        <label><b>Codigo:</b> {{ datos.tipo }} </label> <br>
-                        <label><b>Fecha:</b> {{ datos.fecha }} </label> <br>
-                        <label><b>Hora de llegada:</b> {{ datos.hora_llegada }} </label>
-                        <label><b>Hora Actual:</b> {{ datos.hora_actual }} </label>
-                        <label><b>Tiempo transcurrido:</b> {{ datos.diferencia }} </label>
+                        <label><b>Tipo:</b> {{ datos.tipo }} </label> <br>
+                        <label><b>Fecha y hora de llegada:</b> {{ datos.fecha }} <b style="color:#5499C7">{{datos.hora_llegada}}</b> </label> <br>
+                     
+                        <label><b>Fecha y hora actual:</b> {{ datos.fecha_actual }} <b style="color:#5499C7">{{ datos.hora_actual }}</b></label><br>
+                        <label><b>Tiempo transcurrido:</b> {{ datos.intervalo }} </label>
                         <br>
-                        <label><b>Monto:</b> {{ datos.monto }}</label>
+                        <label><b>Monto:</b> {{ formatPrice(datos.monto) }}</label>
                         <br>
                         <small>Valor de tarifa ${{ tarifa.valor }} cada {{tarifa.minutos}} Min(s). </small>
                     </el-card>
@@ -45,6 +45,11 @@ export default {
                 this.datos = res.data.lista[0];
                 this.tarifa = res.data.tarifa;
             });
+        },
+
+        formatPrice(value) {
+            let val = (value/1).toFixed(0).replace('.', ',')
+            return '$ '+val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
         }
     }
 }
