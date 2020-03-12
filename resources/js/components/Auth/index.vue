@@ -40,7 +40,9 @@
                             @click="modal_ingreso=true"
                              type="success">
                                INGRESO <i class="fas fa-sign-in-alt"></i>
-                           </el-button></center>
+                           </el-button> <br>
+                           <el-button type="text" @click="url('lista_ingreso')">Lista de ingresos</el-button>
+                           </center>
                        </el-col>
 
                        
@@ -48,7 +50,10 @@
                        <el-col :xs="12" :sm="12" :md="12">
                             <center> <el-button type="danger">
                                SALIDA <i class="fas fa-sign-out-alt"></i>
-                           </el-button></center>
+                           </el-button>
+                            <br>
+                           <el-button type="text" @click="url('config_tiempo')">Lista de salida</el-button>
+                           </center>
                        </el-col>
                     </el-row>
                 </div>
@@ -99,7 +104,8 @@
                     </el-col>
                     <el-col :sm="5">
                          <el-form-item label="Hora">
-                            <el-time-select
+                            <!-- <el-time-select
+                            arrow-control
                                 placeholder="Hora"
                                 v-model="hora"
                                 :picker-options="{
@@ -107,7 +113,20 @@
                                     step: '00:01',
                                     end: '23:59'
                                 }">
-                            </el-time-select>
+                            </el-time-select> -->
+
+                            <el-time-picker
+                                :localTime="true"
+                                value-format="HH:mm:ss"
+                                placeholder="HH:MM:SS"
+                                v-model="hora"
+                                :picker-options="{
+                                    start: '05:00',
+                                    step: '00:01',
+                                    end: '23:59'
+                                }"
+                               >
+                            </el-time-picker>
                          </el-form-item>
                     </el-col>
                 </el-row>
@@ -143,7 +162,7 @@
 
                         <tr >
                             <td  colspan="1"><b>fecha:</b></td>
-                            <td  colspan="1">{{boucher.fecha}}</td>
+                            <td  colspan="1">{{boucher.fecha_cl}}</td>
                         </tr>
 
 
@@ -164,7 +183,7 @@
                                     <br>
                                       <qrcode-vue :value="url_value" :size="size" level="H"></qrcode-vue>
                                     
-                                    <small>Puede ver su tiempo visitando este enlace: www.googlepurakk.cl</small>
+                                    <small>Puede ver su tiempo visitando este enlace: {{ url_value }}</small>
                                     </center>
                             </td>
                             
@@ -303,6 +322,10 @@ export default {
 
     .el-radio__input.is-checked+.el-radio__label {
         /* background: rgb(52, 73, 94); */
+        color: rgb(52, 73, 94);
+    }
+
+    button.el-button.el-button--text {
         color: rgb(52, 73, 94);
     }
 </style>

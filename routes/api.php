@@ -29,5 +29,8 @@ Route::group(['middleware' => 'auth.jwt'], function () {
 
      Route::post('ingreso','IngresovehiculoController@ingreso');
      Route::post('registrar_tarifa','IngresovehiculoController@registrar_tarifa');
+
+     Route::get('listar_ingreso', 'IngresovehiculoController@listar_ingreso');
+     
      
 });

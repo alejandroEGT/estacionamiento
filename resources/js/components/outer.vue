@@ -47,6 +47,12 @@
   .el-aside {
     color: #333;
   }
+  .el-card__header {
+    background:rgb(52, 73, 94);
+	color:white;
+	}
+
+	
 </style>
 
 <script>

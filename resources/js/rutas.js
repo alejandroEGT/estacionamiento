@@ -8,6 +8,7 @@ import Cliente_servicio from './components/cliente/cliente.vue';
 import Auth from './components/Auth/auth.vue';
 import Index from './components/Auth/index.vue';
 import Config_tiempo from './components/Auth/config_tiempo.vue';
+import Lista_ingreso from './components/Auth/lista_ingreso.vue';
 // import { Component } from 'react';
 
 const routes = [
@@ -52,6 +53,11 @@ const routes = [
           path: '/config_tiempo',
           component: Config_tiempo
         },
+      {
+        name: 'lista_ingreso',
+        path: '/lista_ingreso',
+        component: Lista_ingreso
+      },
         // { path: '/mi-perfil', component: MiPerfil, name: 'miPerfil' },
 
     ]

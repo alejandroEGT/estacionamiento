@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
+use App\Estadoingresoegresovehiculo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 
@@ -11,8 +13,14 @@ class Ingresovehiculo extends Model
 
     protected function ingreso($r){
 
-        // try{
-            // dd($r->tipo);
+        try{
+            
+            $tarifa = Tarifatiempo::where('activo','S')->first();
+
+            if (!$tarifa) {
+                return ['estado' => 'failed', 'mensaje' => 'No hay una tarifa predeterminada'];
+            }
+
             switch ($r->tipo) {
                 case 'Automovil': $tipo = 1;break;
                 case 'Motocicleta': $tipo = 2;break;
@@ -28,30 +36,75 @@ class Ingresovehiculo extends Model
             $i->activo = 'S';
 
             if($i->save()){
-                return [
-                    'estado'=>'success',
-                    'mensaje'=>'Ingreso exitoso',
-                    'ingreso' => $i,
-                    'server' => $_SERVER
-                ];
+                $i->fecha_cl = date('d/m/Y',strtotime($i->fecha));
+
+                $ie = new Estadoingresoegresovehiculo;
+                $ie->ingreso_vehiculo_id = $i->id;
+                $ie->estado = 1; //en servicio
+                $ie->tarifa_tiempo_id = $tarifa->id;
+                if ($ie->save()) {
+                    return [
+                        'estado'=>'success',
+                        'mensaje'=>'Ingreso exitoso',
+                        'ingreso' => $i,
+                        'server' => $_SERVER
+                    ];
+                }
+                return ['estado'=>'failed','mensaje'=>'No se ha ingresado el formulario'];        
+                
             }
             return ['estado'=>'failed','mensaje'=>'No se ha ingresado el formulario'];
         
-        // }catch(QueryException $e){
-		// 	return[
-		// 		'estado'  => 'failed', 
-        //         'mensaje' => 'QEx: No se ha podido seguir con el proceso de guardado, intente nuevamente o verifique sus datos',
-        //         'error' => $e
-		// 	];
-		// }
-		// catch(\Exception $e){
-		// 	return[
-		// 		'estado'  => 'failed', 
-        //         'mensaje' => 'Ex: No se ha podido seguir con el proceso de guardado, intente nuevamente o verifique sus datos',
-        //         'error' => $e
-        // 	];
-		// }
+        }catch(QueryException $e){
+			return[
+				'estado'  => 'failed', 
+                'mensaje' => 'QEx: No se ha podido seguir con el proceso de guardado, intente nuevamente o verifique sus datos',
+                'error' => $e
+			];
+		}
+		catch(\Exception $e){
+			return[
+				'estado'  => 'failed', 
+                'mensaje' => 'Ex: No se ha podido seguir con el proceso de guardado, intente nuevamente o verifique sus datos',
+                'error' => $e
+        	];
+		}
 
 
+    }
+
+    protected function listar()
+    {
+        $lista = DB::select("SELECT 
+                                iv.id, UPPER(patente) patente, 
+                                to_char(fecha,'dd/mm/YYYY') fecha, 
+                                hora, 
+                                case 
+                                    when tipo_vehiculo = 1 then 'Coche'
+                                    when tipo_vehiculo = 2 then 'Moto'
+                                    when tipo_vehiculo = 3 then 'Otro'
+                                end tipo,
+                               -- eiev.estado,
+                                case 
+                                    when eiev.estado = 1 then 'En servicio'
+                                    when eiev.estado = 2 then 'Fuera de servicio'
+                                    when eiev.estado is null then '(sin registro)'
+                                end estado
+
+                            from ingreso_vehiculo iv
+                            left join estado_ingreso_egreso_vehiculo eiev on eiev.ingreso_vehiculo_id = iv.id
+                            order by iv.id desc
+        ");
+
+        if (count($lista)>0) {
+            return [
+                'estado' => 'success',
+                'lista' => $lista
+            ];
+        }
+        return [
+                'estado' => 'failed',
+                'lista' => null
+            ];
     }
 }

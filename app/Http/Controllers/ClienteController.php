@@ -6,12 +6,12 @@ use Carbon\Carbon;
 use App\Tarifatiempo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Estadoingresoegresovehiculo;
 
 class ClienteController extends Controller
 {
     public function listar($id)
     {
-        $tarifa = Tarifatiempo::where('activo','S')->first();
         
         $lista =  DB::select("SELECT
                            id,
@@ -29,6 +29,9 @@ class ClienteController extends Controller
                             to_char((now()::TIME-hora),'HH24:MI:SS') diferencia,
                             now()
                         from ingreso_vehiculo where id = $id");
+
+        $eiev = Estadoingresoegresovehiculo::where('ingreso_vehiculo_id', $id)->first();
+        $tarifa = Tarifatiempo::find($eiev->tarifa_tiempo_id);
 
         foreach ($lista as $key) {
 

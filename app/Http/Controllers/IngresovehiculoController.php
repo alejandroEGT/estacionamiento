@@ -45,4 +45,11 @@ class IngresovehiculoController extends Controller
             return Tarifatiempo::ingreso($r);
         
     }
+
+    public function listar_ingreso()
+    {
+        $lista = Ingresovehiculo::listar();
+
+        return $lista;
+    }
 }
