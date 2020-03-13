@@ -107583,7 +107583,7 @@ var render = function() {
                       "table",
                       {
                         staticStyle: { "font-size": "16px" },
-                        attrs: { width: "58" }
+                        attrs: { width: "48" }
                       },
                       [
                         _c("tr", [

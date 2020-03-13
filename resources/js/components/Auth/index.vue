@@ -151,7 +151,7 @@
             <div>
              
                 <div class="ticket" id="imprimir" style="display:none">
-                  <table style="font-size:16px" width="58">
+                  <table style="font-size:16px" width="48">
                         <tr >
                             <td style="border-bottom: 1px solid #17202A;" colspan="2"><center>Ticket de llegada</center></td>
                         </tr>
