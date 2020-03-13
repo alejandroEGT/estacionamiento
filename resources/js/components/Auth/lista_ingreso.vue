@@ -34,10 +34,12 @@
                                        
                                         background:#E5E7E9;
                                         border:1px solid black;
+                                        margin-left:2px;
+                                        padding-left:2px;
                                     "
 
                                     > {{ scope.row.patente }}</div>
-                                    <img height="20" src="https://cdn.icon-icons.com/icons2/510/PNG/512/star_icon-icons.com_49980.png" alt="">
+                                    <img height="20" src="estrella.png" alt="">
                                  </div>
                              </template>
                         </el-table-column>

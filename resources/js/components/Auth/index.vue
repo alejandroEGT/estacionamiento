@@ -48,7 +48,9 @@
                        
 
                        <el-col :xs="12" :sm="12" :md="12">
-                            <center> <el-button type="danger">
+                            <center> <el-button 
+                                     @click="modal_salida=true"
+                                     type="danger">
                                SALIDA <i class="fas fa-sign-out-alt"></i>
                            </el-button>
                             <br>
@@ -138,19 +140,18 @@
     
 
                 <el-button @click="registro"  type="info">Registrar</el-button>
-
+                
+               
                 <!-- <button type="button" onclick="printJS('printJS-form', 'html')">
                     Print Form
                 </button> -->
                  <!-- <qrcode-vue :value="value" :size="size" level="H"></qrcode-vue> -->
             </el-form>
             
-            <div id="imprimir" style="display:none">
+            <div>
              
-                <div class="ticket">
-                    
-                    
-                    <table style="font-size:21px">
+                <div class="ticket" id="imprimir" style="display:none">
+                  <table style="font-size:16px" width="58">
                         <tr >
                             <td style="border-bottom: 1px solid #17202A;" colspan="2"><center>Ticket de llegada</center></td>
                         </tr>
@@ -183,21 +184,90 @@
                                     <br>
                                       <qrcode-vue :value="url_value" :size="size" level="H"></qrcode-vue>
                                     
-                                    <small>Puede ver su tiempo visitando este enlace: {{ url_value }}</small>
+                                    <small>Puede ver su tiempo en este enlace: {{ url_value }}</small>
+                                    
+                                    <barcode :value="boucher.patente" :options="{ displayValue: true }"></barcode>
                                     </center>
                             </td>
                             
                         </tr>
                     </table>
 
+                </div>
+            </div>
+        </div>
+    </el-dialog>
 
 
-                    <!-- <center><h3><b>Ticket de entrada</b></h3></center>
-                    <h3><b>Patente del vehiculo: </b>kkck-01</h3></center>
-                    <h3><b>Fecha:</b>10/02/2020</h3></center>
-                    <h3><b>Hora de llegada:</b>10:00</h3></center>
-                    <h3><b>Calle:</b>el kkck de los angeles</h3></center>
-                    <h3><b>Tarifa:</b>$500 los primeros 30 minutos</h3></center> -->
+
+    <el-dialog
+        title="Salida de vehiculo"
+        :visible.sync="modal_salida"
+        width="80%">
+        <div id="invoice"  style="">  
+            <el-form   size="mini">
+                <el-form-item label="Patente">
+                    
+                    <el-input v-model="salida_patente"></el-input>
+                </el-form-item>
+
+
+    
+
+                <el-button @click="salida"  type="info">Dar salida</el-button>
+                
+               
+                <!-- <button type="button" onclick="printJS('printJS-form', 'html')">
+                    Print Form
+                </button> -->
+                 <!-- <qrcode-vue :value="value" :size="size" level="H"></qrcode-vue> -->
+            </el-form>
+            
+            <div>
+             
+                <div class="ticket" id="imprimir" style="display:none">
+                  <table style="font-size:12px">
+                        <tr >
+                            <td style="border-bottom: 1px solid #17202A;" colspan="2"><center>Ticket de llegada</center></td>
+                        </tr>
+
+                        <tr style="border-bottom:1px solid black;">
+                            <td  colspan="1"><b>Patente vehiculo:</b></td>
+                            <td  colspan="1">{{boucher.patente}}</td>
+                        </tr>
+
+                        <tr >
+                            <td  colspan="1"><b>fecha:</b></td>
+                            <td  colspan="1">{{boucher.fecha_cl}}</td>
+                        </tr>
+
+
+                        <tr >
+                            <td  colspan="1"><b>Hora de llegada:</b></td>
+                            <td  colspan="1">{{boucher.hora}}</td>
+                        </tr>
+
+                         <tr >
+                            <td style="border-bottom: 1px solid #17202A;" colspan="1"><b>Calle:</b></td>
+                            <td style="border-bottom: 1px solid #17202A;" colspan="1">Satna maria, colo colo, Los Angeles.</td>
+                        </tr>
+                        
+
+                        <tr >
+                            <td  colspan="2">
+                                    <center><small>Vea su tiempo escaneando este codigo</small>
+                                    <br>
+                                      <qrcode-vue :value="url_value" :size="size" level="H"></qrcode-vue>
+                                    
+                                    <small>Puede ver su tiempo en este enlace: {{ url_value }}</small>
+                                    
+                                    <barcode :value="boucher.patente" :options="{ displayValue: true }"></barcode>
+                                    </center>
+                            </td>
+                            
+                        </tr>
+                    </table>
+
                 </div>
             </div>
         </div>
@@ -205,23 +275,28 @@
 </div>
 </template>
 
+
 <script>
 import QrcodeVue from 'qrcode.vue'
+
 export default {
     data(){
         return {
             modal_ingreso:false,
+            modal_salida:false,
             patente:'',
             tipo:'',
             fecha:'',
             hora:'',
             detalle:'',
+
+            salida_patente:'',
             //qr
             url_value: '',
             size: 280,
 
             boucher : {
-                patente:'',
+                patente:'-',
                 fecha:''
             },
             get_patente:''
@@ -230,9 +305,12 @@ export default {
     components: {
         QrcodeVue,
     },
+    created(){
+           
+    },
     methods:{
         registro(){
-            this.get_patente = {};
+            // this.get_patente = '';
             const data = {
                 patente: this.patente,
                 tipo: this.tipo,
@@ -270,11 +348,28 @@ export default {
                     }, 2000);
                     // document.getElementById('imprimir').setAttribute("style", "display:none");
                     
+                }else{
+                    this.$notify({
+                    title: 'Info',
+                    message: ''+res.data.mensaje+'',
+                    type: 'info'
+                    });
                 }
             });
             // this.print();
         },
-         url_params(name, json){
+
+        salida(){
+
+            const data = {
+                patente: this.salida_patente
+            };
+
+            axios.post('api/salida_vehiculo', data).then((res)=>{
+
+            });
+        },
+        url_params(name, json){
     		this.$router.push({name:name, params:json}).catch(error => {
 			  if (error.name != "NavigationDuplicated") {
 			    throw error;

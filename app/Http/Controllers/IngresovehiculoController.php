@@ -52,4 +52,9 @@ class IngresovehiculoController extends Controller
 
         return $lista;
     }
+
+    public function textopuro($txt)
+    {
+        return str_replace(['-','.','*','_'], '', $txt);
+    }
 }

@@ -9,6 +9,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
          <script src="https://kit.fontawesome.com/ebfc476978.js"></script>
+         
 
          <!-- <link href="mix('css/print.min.css')" >
          <script href="mix('css/print.min.js')" ></script> -->
@@ -78,6 +79,7 @@
         
         </div>
         <script src="https://printjs-4de6.kxcdn.com/print.min.js" ></script>
+        
         <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
     </body>
     </body>

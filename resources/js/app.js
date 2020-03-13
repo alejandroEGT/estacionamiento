@@ -54,6 +54,10 @@ const options = {
 
 Vue.use(VueHtmlToPaper, options);
 
+import VueBarcode from '@chenfengyuan/vue-barcode';
+
+Vue.component(VueBarcode.name, VueBarcode);
+
 
 const router = new VueRouter({
   routes: [

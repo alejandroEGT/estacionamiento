@@ -21,40 +21,50 @@ class Ingresovehiculo extends Model
                 return ['estado' => 'failed', 'mensaje' => 'No hay una tarifa predeterminada'];
             }
 
-            switch ($r->tipo) {
-                case 'Automovil': $tipo = 1;break;
-                case 'Motocicleta': $tipo = 2;break;
-                case 'Otros': $tipo = 3; break;
-                default: break;
-            }
-            $i = $this;
-            $i->patente = $r->patente;
-            $i->tipo_vehiculo = $tipo;
-            $i->fecha = date('Y-m-d',strtotime($r->fecha));
-            $i->hora = $r->hora;
-            $i->detalle = $r->detalle;
-            $i->activo = 'S';
+            $pat = strtoupper($this->textopuro($r->patente));
 
-            if($i->save()){
-                $i->fecha_cl = date('d/m/Y',strtotime($i->fecha));
-
-                $ie = new Estadoingresoegresovehiculo;
-                $ie->ingreso_vehiculo_id = $i->id;
-                $ie->estado = 1; //en servicio
-                $ie->tarifa_tiempo_id = $tarifa->id;
-                if ($ie->save()) {
-                    return [
-                        'estado'=>'success',
-                        'mensaje'=>'Ingreso exitoso',
-                        'ingreso' => $i,
-                        'server' => $_SERVER
-                    ];
+            $verify = DB::select("SELECT id, patente, regexp_replace(patente,'[-,.,*]', '','g') 
+                                from ingreso_vehiculo
+                                where upper(regexp_replace(patente,'[-,.,*]', '','g')) ='$pat' and activo='S'");
+            
+            if(count($verify) > 0){
+                return ['estado'=>'failed','mensaje'=>'Ya esta activa esta patente'];
+            }else{
+                switch ($r->tipo) {
+                    case 'Automovil': $tipo = 1;break;
+                    case 'Motocicleta': $tipo = 2;break;
+                    case 'Otros': $tipo = 3; break;
+                    default: break;
                 }
-                return ['estado'=>'failed','mensaje'=>'No se ha ingresado el formulario'];        
-                
-            }
-            return ['estado'=>'failed','mensaje'=>'No se ha ingresado el formulario'];
+                $i = $this;
+                $i->patente = $r->patente;
+                $i->tipo_vehiculo = $tipo;
+                $i->fecha = date('Y-m-d',strtotime($r->fecha));
+                $i->hora = $r->hora;
+                $i->detalle = $r->detalle;
+                $i->activo = 'S';
+
+                if($i->save()){
+                    $i->fecha_cl = date('d/m/Y',strtotime($i->fecha));
+
+                    $ie = new Estadoingresoegresovehiculo;
+                    $ie->ingreso_vehiculo_id = $i->id;
+                    $ie->estado = 1; //en servicio
+                    $ie->tarifa_tiempo_id = $tarifa->id;
+                    if ($ie->save()) {
+                        return [
+                            'estado'=>'success',
+                            'mensaje'=>'Ingreso exitoso',
+                            'ingreso' => $i,
+                            'server' => $_SERVER
+                        ];
+                    }
+                    return ['estado'=>'failed','mensaje'=>'No se ha ingresado el formulario'];        
+                    
+                }
+                return ['estado'=>'failed','mensaje'=>'No se ha ingresado el formulario'];
         
+            }
         }catch(QueryException $e){
 			return[
 				'estado'  => 'failed', 
@@ -93,7 +103,7 @@ class Ingresovehiculo extends Model
 
                             from ingreso_vehiculo iv
                             left join estado_ingreso_egreso_vehiculo eiev on eiev.ingreso_vehiculo_id = iv.id
-                            order by iv.id desc
+                            where iv.activo='S' order by iv.id desc 
         ");
 
         if (count($lista)>0) {
@@ -106,5 +116,10 @@ class Ingresovehiculo extends Model
                 'estado' => 'failed',
                 'lista' => null
             ];
+    }
+
+    public function textopuro($txt)
+    {
+        return str_replace(['-','.','*','_'], '', $txt);
     }
 }
