@@ -61,7 +61,9 @@ class SalidavehiculoController extends Controller
                     return ['estado'=>'falied','error1'];
 
                 }
-                return ['estado'=>'falied','error2'];
+                return ['estado'=>'falied','error2', 'query'=>"SELECT id, patente, regexp_replace(patente,'[-,.,*]', '','g') 
+                                        from ingreso_vehiculo
+                                        where upper(regexp_replace(patente,'[-,.,*]', '','g')) ='$pat' and activo='S'"];
         //     }catch(QueryException $e){
         //         DB::rollback();
 		// 	return[
