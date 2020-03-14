@@ -25,7 +25,7 @@
                         <small>Valor de tarifa ${{ tarifa.valor }} cada {{tarifa.minutos}} Min(s). </small>
             </el-card>
 
-            <el-card v-if="datos.estado_id == 1" class="box-card" v-loading="carga" >
+            <el-card v-if="datos.estado_id == 2" class="box-card" v-loading="carga" >
                     <center><h3>Panel de llegada</h3></center>
                     <!-- <el-button @click="traer_ingreso" size="mini" type="info">Refrezcar <i class="fas fa-sync-alt"></i></el-button>
                         <hr>

@@ -108777,7 +108777,7 @@ var render = function() {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm.datos.estado_id == 1
+              _vm.datos.estado_id == 2
                 ? _c(
                     "el-card",
                     {
