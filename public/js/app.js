@@ -9111,6 +9111,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -108634,124 +108656,181 @@ var render = function() {
             "el-col",
             { attrs: { sm: 15, md: 15 } },
             [
-              _c(
-                "el-card",
-                {
-                  directives: [
+              _vm.datos.estado_id == 1
+                ? _c(
+                    "el-card",
                     {
-                      name: "loading",
-                      rawName: "v-loading",
-                      value: _vm.carga,
-                      expression: "carga"
-                    }
-                  ],
-                  staticClass: "box-card"
-                },
-                [
-                  _c("center", [_c("h3", [_vm._v("Panel de llegada")])]),
-                  _vm._v(" "),
-                  _c(
-                    "el-button",
-                    {
-                      attrs: { size: "mini", type: "info" },
-                      on: { click: _vm.traer_ingreso }
+                      directives: [
+                        {
+                          name: "loading",
+                          rawName: "v-loading",
+                          value: _vm.carga,
+                          expression: "carga"
+                        }
+                      ],
+                      staticClass: "box-card"
                     },
                     [
-                      _vm._v("Refrezcar "),
-                      _c("i", { staticClass: "fas fa-sync-alt" })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("label", [
-                    _c("b", [_vm._v("Codigo:")]),
-                    _vm._v(" " + _vm._s(_vm.datos.id) + " ")
-                  ]),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("label", [
-                    _c("b", [_vm._v("Patente:")]),
-                    _vm._v(" " + _vm._s(_vm.datos.patente) + " ")
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("label", [
-                    _c("b", [_vm._v("Tipo:")]),
-                    _vm._v(" " + _vm._s(_vm.datos.tipo) + " ")
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("label", [
-                    _c("b", [_vm._v("Fecha y hora de llegada:")]),
-                    _vm._v(" " + _vm._s(_vm.datos.fecha) + " "),
-                    _c("b", { staticStyle: { color: "#5499C7" } }, [
-                      _vm._v(_vm._s(_vm.datos.hora_llegada))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("label", [
-                    _c("b", [_vm._v("Fecha y hora actual:")]),
-                    _vm._v(" " + _vm._s(_vm.datos.fecha_actual) + " "),
-                    _c("b", { staticStyle: { color: "#5499C7" } }, [
-                      _vm._v(_vm._s(_vm.datos.hora_actual))
-                    ])
-                  ]),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("label", [
-                    _c("b", [_vm._v("Tiempo transcurrido:")]),
-                    _vm._v(" " + _vm._s(_vm.datos.intervalo) + " ")
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("label", [
-                    _c("b", [_vm._v("Estado:")]),
-                    _vm._v(" "),
-                    _vm.datos.estado_id == 1
-                      ? _c("label", { staticStyle: { color: "#2ECC71" } }, [
-                          _c("i", { staticClass: "fas fa-check" }),
-                          _vm._v(" " + _vm._s(_vm.datos.estado))
+                      _c("center", [_c("h3", [_vm._v("Panel de llegada")])]),
+                      _vm._v(" "),
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { size: "mini", type: "info" },
+                          on: { click: _vm.traer_ingreso }
+                        },
+                        [
+                          _vm._v("Refrezcar "),
+                          _c("i", { staticClass: "fas fa-sync-alt" })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("b", [_vm._v("Codigo:")]),
+                        _vm._v(" " + _vm._s(_vm.datos.id) + " ")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("b", [_vm._v("Patente:")]),
+                        _vm._v(" " + _vm._s(_vm.datos.patente) + " ")
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("b", [_vm._v("Tipo:")]),
+                        _vm._v(" " + _vm._s(_vm.datos.tipo) + " ")
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("b", [_vm._v("Fecha y hora de llegada:")]),
+                        _vm._v(" " + _vm._s(_vm.datos.fecha) + " "),
+                        _c("b", { staticStyle: { color: "#5499C7" } }, [
+                          _vm._v(_vm._s(_vm.datos.hora_llegada))
                         ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.datos.estado_id == 2
-                      ? _c("label", { staticStyle: { color: "#EC7063" } }, [
-                          _c("i", { staticClass: "fas fa-times" }),
-                          _vm._v(" " + _vm._s(_vm.datos.estado))
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("b", [_vm._v("Fecha y hora actual:")]),
+                        _vm._v(" " + _vm._s(_vm.datos.fecha_actual) + " "),
+                        _c("b", { staticStyle: { color: "#5499C7" } }, [
+                          _vm._v(_vm._s(_vm.datos.hora_actual))
                         ])
-                      : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("label", { staticStyle: { "font-size": "19px" } }, [
-                    _c("b", [_vm._v("Monto:")]),
-                    _vm._v(" "),
-                    _c("b", { staticStyle: { color: "#73C6B6" } }, [
-                      _vm._v(_vm._s(_vm.formatPrice(_vm.datos.monto)))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("small", [
-                    _vm._v(
-                      "Valor de tarifa $" +
-                        _vm._s(_vm.tarifa.valor) +
-                        " cada " +
-                        _vm._s(_vm.tarifa.minutos) +
-                        " Min(s). "
-                    )
-                  ])
-                ],
-                1
-              )
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("b", [_vm._v("Tiempo transcurrido:")]),
+                        _vm._v(" " + _vm._s(_vm.datos.intervalo) + " ")
+                      ]),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("b", [_vm._v("Estado:")]),
+                        _vm._v(" "),
+                        _vm.datos.estado_id == 1
+                          ? _c("label", { staticStyle: { color: "#2ECC71" } }, [
+                              _c("i", { staticClass: "fas fa-check" }),
+                              _vm._v(" " + _vm._s(_vm.datos.estado))
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.datos.estado_id == 2
+                          ? _c("label", { staticStyle: { color: "#EC7063" } }, [
+                              _c("i", { staticClass: "fas fa-times" }),
+                              _vm._v(" " + _vm._s(_vm.datos.estado))
+                            ])
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("label", { staticStyle: { "font-size": "19px" } }, [
+                        _c("b", [_vm._v("Monto:")]),
+                        _vm._v(" "),
+                        _c("b", { staticStyle: { color: "#73C6B6" } }, [
+                          _vm._v(_vm._s(_vm.formatPrice(_vm.datos.monto)))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("small", [
+                        _vm._v(
+                          "Valor de tarifa $" +
+                            _vm._s(_vm.tarifa.valor) +
+                            " cada " +
+                            _vm._s(_vm.tarifa.minutos) +
+                            " Min(s). "
+                        )
+                      ])
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.datos.estado_id == 1
+                ? _c(
+                    "el-card",
+                    {
+                      directives: [
+                        {
+                          name: "loading",
+                          rawName: "v-loading",
+                          value: _vm.carga,
+                          expression: "carga"
+                        }
+                      ],
+                      staticClass: "box-card"
+                    },
+                    [
+                      _c("center", [_c("h3", [_vm._v("Panel de llegada")])]),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("b", [_vm._v("Estado:")]),
+                        _vm._v(" "),
+                        _vm.datos.estado_id == 1
+                          ? _c("label", { staticStyle: { color: "#2ECC71" } }, [
+                              _c("i", { staticClass: "fas fa-check" }),
+                              _vm._v(" " + _vm._s(_vm.datos.estado))
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.datos.estado_id == 2
+                          ? _c("label", { staticStyle: { color: "#EC7063" } }, [
+                              _c("i", { staticClass: "fas fa-times" }),
+                              _vm._v(" " + _vm._s(_vm.datos.estado))
+                            ])
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("small", [
+                        _vm._v(
+                          "Valor de tarifa $" +
+                            _vm._s(_vm.tarifa.valor) +
+                            " cada " +
+                            _vm._s(_vm.tarifa.minutos) +
+                            " Min(s). "
+                        )
+                      ])
+                    ],
+                    1
+                  )
+                : _vm._e()
             ],
             1
           )
