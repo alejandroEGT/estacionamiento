@@ -99,7 +99,8 @@ class Ingresovehiculo extends Model
                                     when eiev.estado = 1 then 'En servicio'
                                     when eiev.estado = 2 then 'Fuera de servicio'
                                     when eiev.estado is null then '(sin registro)'
-                                end estado
+                                end estado,
+                                eiev.estado estado_id
 
                             from ingreso_vehiculo iv
                             left join estado_ingreso_egreso_vehiculo eiev on eiev.ingreso_vehiculo_id = iv.id

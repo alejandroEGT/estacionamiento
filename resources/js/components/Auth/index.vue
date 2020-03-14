@@ -54,7 +54,7 @@
                                SALIDA <i class="fas fa-sign-out-alt"></i>
                            </el-button>
                             <br>
-                           <el-button type="text" @click="url('config_tiempo')">Lista de salida</el-button>
+                           <el-button type="text" @click="url('lista_egresos')">Lista de salida</el-button>
                            </center>
                        </el-col>
                     </el-row>

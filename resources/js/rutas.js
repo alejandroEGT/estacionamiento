@@ -9,6 +9,7 @@ import Auth from './components/Auth/auth.vue';
 import Index from './components/Auth/index.vue';
 import Config_tiempo from './components/Auth/config_tiempo.vue';
 import Lista_ingreso from './components/Auth/lista_ingreso.vue';
+import Lista_egresos from './components/Auth/lista_egreso.vue';
 // import { Component } from 'react';
 
 const routes = [
@@ -57,6 +58,11 @@ const routes = [
         name: 'lista_ingreso',
         path: '/lista_ingreso',
         component: Lista_ingreso
+      },
+      {
+        name: 'lista_egresos',
+        path: '/lista_egresos',
+        component: Lista_egresos
       },
         // { path: '/mi-perfil', component: MiPerfil, name: 'miPerfil' },
 

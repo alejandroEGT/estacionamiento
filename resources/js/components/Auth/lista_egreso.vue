@@ -15,7 +15,7 @@
 
                         <el-table-column  class="lol"  label="ID" width="180">
                              <template slot-scope="scope">
-                                 {{ scope.row.id }}
+                                 {{ scope.row.egreso_vehiculo_id }}
                              </template>
                         </el-table-column>
 
@@ -44,28 +44,27 @@
                              </template>
                         </el-table-column>
 
-                        <el-table-column  label="TIPO" width="180">
-                             <template slot-scope="scope">
-                                 {{ scope.row.tipo }}
-                             </template>
-                        </el-table-column>
-
-                         <el-table-column  label="ESTADO" width="180">
-                             <template slot-scope="scope">
-                                <label v-if="scope.row.estado_id == 1" style="color:green"><b>{{ scope.row.estado }}</b></label>
-                                 <!-- <label v-if="scope.row.estado_id == 2" style="color:red">{{ scope.row.estado }}</label> -->
-                             </template>
-                        </el-table-column>
-
                         <el-table-column  label="FECHA INGRESO" width="180">
                              <template slot-scope="scope">
-                                 {{ scope.row.fecha }}
+                                <b style="color:green"> {{ scope.row.fecha_ingreso }}</b>
                              </template>
                         </el-table-column>
 
                          <el-table-column  label="HORA INGRESO" width="180">
                              <template slot-scope="scope">
-                                 <b style="color:#2471A3">{{ scope.row.hora }}</b>
+                                 <b style="color:green">{{ scope.row.hora_ingreso }}</b>
+                             </template>
+                        </el-table-column>
+
+                        <el-table-column  label="FECHA EGRESO" width="180">
+                             <template slot-scope="scope">
+                                <b style="color:red"> {{ scope.row.fecha_egreso }}</b>
+                             </template>
+                        </el-table-column>
+
+                         <el-table-column  label="HORA EGRESO" width="180">
+                             <template slot-scope="scope">
+                                 <b style="color:red">{{ scope.row.hora_egreso }}</b>
                              </template>
                         </el-table-column>
                         
@@ -81,8 +80,8 @@
 <script>
 export default {
     data(){
-        return{
-            lista:[],
+        return {
+            lista:[]
         }
     },
     created(){
@@ -90,18 +89,10 @@ export default {
     },
     methods:{
         listar(){
-            axios.get('api/listar_ingreso').then((res)=>{
-                this.lista = res.data.lista;
+            axios.get('api/traer_salidas').then((res)=>{
+                this.lista = res.data;
             });
-        },
-        tableRowClassName({row, rowIndex}) {
-            if (row.launch_success == true) {
-            return 'success-row';
-            } else if (row.launch_success == false) {
-            return 'warning-row';
-            }
-            return 'other-row';
         }
-    },
+    }
 }
 </script>

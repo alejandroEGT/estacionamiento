@@ -14,7 +14,7 @@ class ClienteController extends Controller
     {
         
         $lista =  DB::select("SELECT
-                           id,
+                           iv.id,
                             patente,
                             case when tipo_vehiculo = 1 then 'Coche' 
                             when tipo_vehiculo = 2 then 'Moto' 
@@ -27,8 +27,17 @@ class ClienteController extends Controller
                             to_char(now(),'dd/mm/YYYY') fecha_actual,
                             to_char(now(),'HH24:MI:SS') hora_actual,
                             to_char((now()::TIME-hora),'HH24:MI:SS') diferencia,
-                            now()
-                        from ingreso_vehiculo where id = $id");
+                            now(),
+                             case 
+                                    when estado = 1 then 'En servicio'
+                                    when estado = 2 then 'Fuera de servicio'
+                                    when estado is null then '(sin registro)'
+                                end estado,
+                            estado estado_id
+                          
+                        from ingreso_vehiculo iv
+                        inner join estado_ingreso_egreso_vehiculo eie on eie.ingreso_vehiculo_id = iv.id
+                        where iv.id = $id");
 
         $eiev = Estadoingresoegresovehiculo::where('ingreso_vehiculo_id', $id)->first();
         $tarifa = Tarifatiempo::find($eiev->tarifa_tiempo_id);

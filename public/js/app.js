@@ -8721,6 +8721,116 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Auth/lista_egreso.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Auth/lista_egreso.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      lista: []
+    };
+  },
+  created: function created() {
+    this.listar();
+  },
+  methods: {
+    listar: function listar() {
+      var _this = this;
+
+      axios.get('api/traer_salidas').then(function (res) {
+        _this.lista = res.data;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Auth/lista_ingreso.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Auth/lista_ingreso.vue?vue&type=script&lang=js& ***!
@@ -8730,6 +8840,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -8994,9 +9105,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      carga: true,
       ingreso_id: this.$route.params.id,
       datos: {},
       tarifa: {}
@@ -9012,6 +9130,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/ingreso_vehiculo/' + this.ingreso_id).then(function (res) {
         _this.datos = res.data.lista[0];
         _this.tarifa = res.data.tarifa;
+        _this.carga = false;
       });
     },
     formatPrice: function formatPrice(value) {
@@ -107318,7 +107437,7 @@ var render = function() {
                                     attrs: { type: "text" },
                                     on: {
                                       click: function($event) {
-                                        return _vm.url("config_tiempo")
+                                        return _vm.url("lista_egresos")
                                       }
                                     }
                                   },
@@ -107908,6 +108027,210 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Auth/lista_egreso.vue?vue&type=template&id=0fee8fd9&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Auth/lista_egreso.vue?vue&type=template&id=0fee8fd9& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticStyle: { width: "100%" } },
+    [
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "el-row",
+        { attrs: { gutter: 10, type: "flex", justify: "center" } },
+        [
+          _c(
+            "el-col",
+            { attrs: { sm: 20, md: 20 } },
+            [
+              _c(
+                "el-card",
+                { staticClass: "box-card" },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "clearfix",
+                      attrs: { slot: "header" },
+                      slot: "header"
+                    },
+                    [_c("span", [_vm._v("Lista de ingresos")])]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-table",
+                    {
+                      staticStyle: { width: "100%" },
+                      attrs: { data: _vm.lista, height: "350" }
+                    },
+                    [
+                      _c("el-table-column", {
+                        staticClass: "lol",
+                        attrs: { label: "ID", width: "180" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                _vm._v(
+                                  "\n                             " +
+                                    _vm._s(scope.row.egreso_vehiculo_id) +
+                                    "\n                         "
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { label: "PATENTE", width: "180" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                _c(
+                                  "div",
+                                  {
+                                    staticStyle: {
+                                      width: "100%",
+                                      height: "100%",
+                                      padding: "2px",
+                                      background: "#E5E7E9"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticStyle: {
+                                          float: "left",
+                                          width: "80%",
+                                          height: "80%",
+                                          background: "#E5E7E9",
+                                          border: "1px solid black",
+                                          "margin-left": "2px",
+                                          "padding-left": "2px"
+                                        }
+                                      },
+                                      [_vm._v(" " + _vm._s(scope.row.patente))]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("img", {
+                                      attrs: {
+                                        height: "20",
+                                        src: "estrella.png",
+                                        alt: ""
+                                      }
+                                    })
+                                  ]
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { label: "FECHA INGRESO", width: "180" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                _c("b", { staticStyle: { color: "green" } }, [
+                                  _vm._v(" " + _vm._s(scope.row.fecha_ingreso))
+                                ])
+                              ]
+                            }
+                          }
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { label: "HORA INGRESO", width: "180" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                _c("b", { staticStyle: { color: "green" } }, [
+                                  _vm._v(_vm._s(scope.row.hora_ingreso))
+                                ])
+                              ]
+                            }
+                          }
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { label: "FECHA EGRESO", width: "180" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                _c("b", { staticStyle: { color: "red" } }, [
+                                  _vm._v(" " + _vm._s(scope.row.fecha_egreso))
+                                ])
+                              ]
+                            }
+                          }
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { label: "HORA EGRESO", width: "180" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                _c("b", { staticStyle: { color: "red" } }, [
+                                  _vm._v(_vm._s(scope.row.hora_egreso))
+                                ])
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Auth/lista_ingreso.vue?vue&type=template&id=06b38f0e&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Auth/lista_ingreso.vue?vue&type=template&id=06b38f0e& ***!
@@ -108051,11 +108374,17 @@ var render = function() {
                             key: "default",
                             fn: function(scope) {
                               return [
-                                _vm._v(
-                                  "\n                             " +
-                                    _vm._s(scope.row.estado) +
-                                    "\n                         "
-                                )
+                                scope.row.estado_id == 1
+                                  ? _c(
+                                      "label",
+                                      { staticStyle: { color: "green" } },
+                                      [
+                                        _c("b", [
+                                          _vm._v(_vm._s(scope.row.estado))
+                                        ])
+                                      ]
+                                    )
+                                  : _vm._e()
                               ]
                             }
                           }
@@ -108305,74 +108634,124 @@ var render = function() {
             "el-col",
             { attrs: { sm: 15, md: 15 } },
             [
-              _c("el-card", { staticClass: "box-card" }, [
-                _c("h3", [_vm._v("Panel de llegada")]),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c("label", [
-                  _c("b", [_vm._v("Codigo:")]),
-                  _vm._v(" " + _vm._s(_vm.datos.id) + " ")
-                ]),
-                _c("br"),
-                _vm._v(" "),
-                _c("label", [
-                  _c("b", [_vm._v("Patente:")]),
-                  _vm._v(" " + _vm._s(_vm.datos.patente) + " ")
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("label", [
-                  _c("b", [_vm._v("Tipo:")]),
-                  _vm._v(" " + _vm._s(_vm.datos.tipo) + " ")
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("label", [
-                  _c("b", [_vm._v("Fecha y hora de llegada:")]),
-                  _vm._v(" " + _vm._s(_vm.datos.fecha) + " "),
-                  _c("b", { staticStyle: { color: "#5499C7" } }, [
-                    _vm._v(_vm._s(_vm.datos.hora_llegada))
+              _c(
+                "el-card",
+                {
+                  directives: [
+                    {
+                      name: "loading",
+                      rawName: "v-loading",
+                      value: _vm.carga,
+                      expression: "carga"
+                    }
+                  ],
+                  staticClass: "box-card"
+                },
+                [
+                  _c("center", [_c("h3", [_vm._v("Panel de llegada")])]),
+                  _vm._v(" "),
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { size: "mini", type: "info" },
+                      on: { click: _vm.traer_ingreso }
+                    },
+                    [
+                      _vm._v("Refrezcar "),
+                      _c("i", { staticClass: "fas fa-sync-alt" })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("b", [_vm._v("Codigo:")]),
+                    _vm._v(" " + _vm._s(_vm.datos.id) + " ")
+                  ]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("b", [_vm._v("Patente:")]),
+                    _vm._v(" " + _vm._s(_vm.datos.patente) + " ")
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("b", [_vm._v("Tipo:")]),
+                    _vm._v(" " + _vm._s(_vm.datos.tipo) + " ")
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("b", [_vm._v("Fecha y hora de llegada:")]),
+                    _vm._v(" " + _vm._s(_vm.datos.fecha) + " "),
+                    _c("b", { staticStyle: { color: "#5499C7" } }, [
+                      _vm._v(_vm._s(_vm.datos.hora_llegada))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("b", [_vm._v("Fecha y hora actual:")]),
+                    _vm._v(" " + _vm._s(_vm.datos.fecha_actual) + " "),
+                    _c("b", { staticStyle: { color: "#5499C7" } }, [
+                      _vm._v(_vm._s(_vm.datos.hora_actual))
+                    ])
+                  ]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("b", [_vm._v("Tiempo transcurrido:")]),
+                    _vm._v(" " + _vm._s(_vm.datos.intervalo) + " ")
+                  ]),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("b", [_vm._v("Estado:")]),
+                    _vm._v(" "),
+                    _vm.datos.estado_id == 1
+                      ? _c("label", { staticStyle: { color: "#2ECC71" } }, [
+                          _c("i", { staticClass: "fas fa-check" }),
+                          _vm._v(" " + _vm._s(_vm.datos.estado))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.datos.estado_id == 2
+                      ? _c("label", { staticStyle: { color: "#EC7063" } }, [
+                          _c("i", { staticClass: "fas fa-times" }),
+                          _vm._v(" " + _vm._s(_vm.datos.estado))
+                        ])
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("label", { staticStyle: { "font-size": "19px" } }, [
+                    _c("b", [_vm._v("Monto:")]),
+                    _vm._v(" "),
+                    _c("b", { staticStyle: { color: "#73C6B6" } }, [
+                      _vm._v(_vm._s(_vm.formatPrice(_vm.datos.monto)))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("small", [
+                    _vm._v(
+                      "Valor de tarifa $" +
+                        _vm._s(_vm.tarifa.valor) +
+                        " cada " +
+                        _vm._s(_vm.tarifa.minutos) +
+                        " Min(s). "
+                    )
                   ])
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("label", [
-                  _c("b", [_vm._v("Fecha y hora actual:")]),
-                  _vm._v(" " + _vm._s(_vm.datos.fecha_actual) + " "),
-                  _c("b", { staticStyle: { color: "#5499C7" } }, [
-                    _vm._v(_vm._s(_vm.datos.hora_actual))
-                  ])
-                ]),
-                _c("br"),
-                _vm._v(" "),
-                _c("label", [
-                  _c("b", [_vm._v("Tiempo transcurrido:")]),
-                  _vm._v(" " + _vm._s(_vm.datos.intervalo) + " ")
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("label", [
-                  _c("b", [_vm._v("Monto:")]),
-                  _vm._v(" " + _vm._s(_vm.formatPrice(_vm.datos.monto)))
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("small", [
-                  _vm._v(
-                    "Valor de tarifa $" +
-                      _vm._s(_vm.tarifa.valor) +
-                      " cada " +
-                      _vm._s(_vm.tarifa.minutos) +
-                      " Min(s). "
-                  )
-                ])
-              ])
+                ],
+                1
+              )
             ],
             1
           )
@@ -123920,6 +124299,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Auth/lista_egreso.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/Auth/lista_egreso.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _lista_egreso_vue_vue_type_template_id_0fee8fd9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lista_egreso.vue?vue&type=template&id=0fee8fd9& */ "./resources/js/components/Auth/lista_egreso.vue?vue&type=template&id=0fee8fd9&");
+/* harmony import */ var _lista_egreso_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lista_egreso.vue?vue&type=script&lang=js& */ "./resources/js/components/Auth/lista_egreso.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _lista_egreso_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _lista_egreso_vue_vue_type_template_id_0fee8fd9___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _lista_egreso_vue_vue_type_template_id_0fee8fd9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Auth/lista_egreso.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Auth/lista_egreso.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/Auth/lista_egreso.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_lista_egreso_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./lista_egreso.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Auth/lista_egreso.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_lista_egreso_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Auth/lista_egreso.vue?vue&type=template&id=0fee8fd9&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/Auth/lista_egreso.vue?vue&type=template&id=0fee8fd9& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_lista_egreso_vue_vue_type_template_id_0fee8fd9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./lista_egreso.vue?vue&type=template&id=0fee8fd9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Auth/lista_egreso.vue?vue&type=template&id=0fee8fd9&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_lista_egreso_vue_vue_type_template_id_0fee8fd9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_lista_egreso_vue_vue_type_template_id_0fee8fd9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Auth/lista_ingreso.vue":
 /*!********************************************************!*\
   !*** ./resources/js/components/Auth/lista_ingreso.vue ***!
@@ -124336,6 +124784,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Auth_index_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Auth/index.vue */ "./resources/js/components/Auth/index.vue");
 /* harmony import */ var _components_Auth_config_tiempo_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Auth/config_tiempo.vue */ "./resources/js/components/Auth/config_tiempo.vue");
 /* harmony import */ var _components_Auth_lista_ingreso_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Auth/lista_ingreso.vue */ "./resources/js/components/Auth/lista_ingreso.vue");
+/* harmony import */ var _components_Auth_lista_egreso_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Auth/lista_egreso.vue */ "./resources/js/components/Auth/lista_egreso.vue");
+
 
 
 
@@ -124384,6 +124834,10 @@ var routes = [{
     name: 'lista_ingreso',
     path: '/lista_ingreso',
     component: _components_Auth_lista_ingreso_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
+    name: 'lista_egresos',
+    path: '/lista_egresos',
+    component: _components_Auth_lista_egreso_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
   } // { path: '/mi-perfil', component: MiPerfil, name: 'miPerfil' },
   ]
 }, {

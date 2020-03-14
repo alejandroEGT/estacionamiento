@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
      Route::get('listar_ingreso', 'IngresovehiculoController@listar_ingreso');
 
      Route::post('salida_vehiculo', 'SalidavehiculoController@salida_vehiculo');
+     Route::get('traer_salidas', 'SalidavehiculoController@traer_salidas');
      
      
 });
