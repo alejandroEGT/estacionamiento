@@ -51,7 +51,13 @@ class SalidavehiculoController extends Controller
 
                                 if ($eiev->save()) {
                                     DB::commit();
-                                    return ['estado'=>'success','Insert'];
+
+                                    $return_boleta = Salidavehiculo::boleta($e->id);
+                                    return [
+                                        'estado'=>'success',
+                                        'mensaje' => 'Salida con exito',
+                                        'boleta' => $return_boleta
+                                    ];
                                 }
                             }
                             return ['estado'=>'falied','error'];

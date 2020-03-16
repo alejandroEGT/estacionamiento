@@ -5,7 +5,7 @@
             <el-col :sm="20" :md="20">
                 <el-card class="box-card">
                  <div slot="header" class="clearfix">
-                    <span>Lista de ingresos</span>
+                    <span>Lista de Salida</span>
                     
                 </div>
                     <el-table
@@ -13,7 +13,7 @@
                         height="350"
                         style="width: 100%">
 
-                        <el-table-column  class="lol"  label="ID" width="180">
+                        <el-table-column  class="lol"  label="ID" width="80">
                              <template slot-scope="scope">
                                  {{ scope.row.egreso_vehiculo_id }}
                              </template>
@@ -67,6 +67,18 @@
                                  <b style="color:red">{{ scope.row.hora_egreso }}</b>
                              </template>
                         </el-table-column>
+
+                        <el-table-column  label="HORAS DE ESTADÍA" width="180">
+                             <template slot-scope="scope">
+                                 <b style="color:grey">{{ scope.row.intervalo }}</b>
+                             </template>
+                        </el-table-column>
+
+                        <el-table-column  label="MONTO" width="180">
+                             <template slot-scope="scope">
+                                 <b style="color:green">+ {{ formatPrice(scope.row.monto) }}</b>
+                             </template>
+                        </el-table-column>
                         
                     </el-table>
 
@@ -92,6 +104,10 @@ export default {
             axios.get('api/traer_salidas').then((res)=>{
                 this.lista = res.data;
             });
+        },
+        formatPrice(value) {
+            let val = (value/1).toFixed(0).replace('.', ',')
+            return '$ '+val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
         }
     }
 }

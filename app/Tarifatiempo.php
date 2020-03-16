@@ -31,8 +31,19 @@ class Tarifatiempo extends Model
 
     }
 
-    protected function listar()
+    protected function lista()
     {
-        dd("sasd");
+        $l = $this->orderBy('id')->get();
+
+        if ($l) {
+            return [
+                'estado' => 'success',
+                'lista' => $l
+            ];
+        }
+        return [
+            'estado' => 'failed',
+            'lista' => null
+        ];
     }
 }

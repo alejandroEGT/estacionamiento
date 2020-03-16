@@ -29,8 +29,10 @@ Route::group(['middleware' => 'auth.jwt'], function () {
 
      Route::post('ingreso','IngresovehiculoController@ingreso');
      Route::post('registrar_tarifa','IngresovehiculoController@registrar_tarifa');
-
+     Route::get('listar_config_tiempo','IngresovehiculoController@listar_config_tiempo');
      Route::get('listar_ingreso', 'IngresovehiculoController@listar_ingreso');
+     Route::get('activar_config_tiempo/{estado}/{id}', 'IngresovehiculoController@activar_config_tiempo');
+    
 
      Route::post('salida_vehiculo', 'SalidavehiculoController@salida_vehiculo');
      Route::get('traer_salidas', 'SalidavehiculoController@traer_salidas');

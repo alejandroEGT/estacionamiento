@@ -8310,6 +8310,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -8318,12 +8370,40 @@ __webpack_require__.r(__webpack_exports__);
         valor: '',
         check: false,
         minutos_gratis: ''
-      }
+      },
+      get_lista: []
     };
+  },
+  created: function created() {
+    this.listar();
   },
   methods: {
     registrar_tarifa: function registrar_tarifa() {
-      axios.post('api/registrar_tarifa', this.datos).then(function (res) {});
+      var _this = this;
+
+      axios.post('api/registrar_tarifa', this.datos).then(function (res) {
+        _this.listar();
+      });
+    },
+    listar: function listar() {
+      var _this2 = this;
+
+      axios.get('api/listar_config_tiempo').then(function (res) {
+        if (res.data.estado == 'success') {
+          _this2.get_lista = res.data.lista;
+        }
+      });
+    },
+    activar: function activar(estado, id) {
+      var _this3 = this;
+
+      axios.get('api/activar_config_tiempo/' + estado + '/' + id).then(function (res) {
+        _this3.listar();
+      });
+    },
+    formatPrice: function formatPrice(value) {
+      var val = (value / 1).toFixed(0).replace('.', ',');
+      return '$ ' + val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
   }
 });
@@ -8340,6 +8420,32 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var qrcode_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! qrcode.vue */ "./node_modules/qrcode.vue/dist/qrcode.vue.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8637,7 +8743,8 @@ __webpack_require__.r(__webpack_exports__);
         patente: '-',
         fecha: ''
       },
-      get_patente: ''
+      get_patente: '',
+      boucher_salida: {}
     };
   },
   components: {
@@ -8688,10 +8795,21 @@ __webpack_require__.r(__webpack_exports__);
       }); // this.print();
     },
     salida: function salida() {
+      var _this2 = this;
+
       var data = {
         patente: this.salida_patente
       };
-      axios.post('api/salida_vehiculo', data).then(function (res) {});
+      axios.post('api/salida_vehiculo', data).then(function (res) {
+        if (res.data.estado == 'success') {
+          _this2.boucher_salida = res.data.boleta[0];
+          setTimeout(function () {
+            document.getElementById('imprimir_cierre').setAttribute("style", "display:block");
+            printJS('imprimir_cierre', 'html');
+            document.getElementById('imprimir_cierre').setAttribute("style", "display:none");
+          }, 2000);
+        }
+      });
     },
     url_params: function url_params(name, json) {
       this.$router.push({
@@ -8809,6 +8927,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -8825,6 +8955,10 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/traer_salidas').then(function (res) {
         _this.lista = res.data;
       });
+    },
+    formatPrice: function formatPrice(value) {
+      var val = (value / 1).toFixed(0).replace('.', ',');
+      return '$ ' + val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
   }
 });
@@ -107197,6 +107331,183 @@ var render = function() {
                       )
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c(
+                    "el-table",
+                    {
+                      staticStyle: { width: "100%" },
+                      attrs: { data: _vm.get_lista, height: "350" }
+                    },
+                    [
+                      _c("el-table-column", {
+                        staticClass: "lol",
+                        attrs: { label: "ID", width: "90" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                _vm._v(
+                                  "\n                             " +
+                                    _vm._s(scope.row.id) +
+                                    "\n                         "
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { label: "MINUTOS", width: "90" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                _vm._v(
+                                  "\n                             " +
+                                    _vm._s(scope.row.minutos) +
+                                    "\n                         "
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { label: "VALOR", width: "95" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                _c("b", { staticStyle: { color: "green" } }, [
+                                  _vm._v(
+                                    " " +
+                                      _vm._s(_vm.formatPrice(scope.row.valor))
+                                  )
+                                ])
+                              ]
+                            }
+                          }
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { label: "¿MINUTOS GRATUITOS?", width: "180" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                scope.row.minutos_gratis == "S"
+                                  ? _c(
+                                      "b",
+                                      { staticStyle: { color: "green" } },
+                                      [_vm._v(_vm._s("SI"))]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                scope.row.minutos_gratis == "N"
+                                  ? _c("b", { staticStyle: { color: "red" } }, [
+                                      _vm._v(_vm._s("NO"))
+                                    ])
+                                  : _vm._e()
+                              ]
+                            }
+                          }
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { label: "TIEMPO GRATUITO", width: "180" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                scope.row.valor_minutos_gratis == null
+                                  ? _c("b", { staticStyle: { color: "red" } }, [
+                                      _vm._v(" -- ")
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                scope.row.valor_minutos_gratis
+                                  ? _c("b", { staticStyle: { color: "red" } }, [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(scope.row.valor_minutos_gratis)
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ]
+                            }
+                          }
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { label: "ACTIVO", width: "180" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                scope.row.activo == "S"
+                                  ? _c(
+                                      "el-button",
+                                      {
+                                        attrs: {
+                                          size: "small",
+                                          type: "success",
+                                          round: ""
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.activar(
+                                              "S",
+                                              scope.row.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("SI")]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                scope.row.activo == "N"
+                                  ? _c(
+                                      "el-button",
+                                      {
+                                        attrs: {
+                                          size: "small",
+                                          type: "danger",
+                                          round: ""
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.activar(
+                                              "N",
+                                              scope.row.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("NO")]
+                                    )
+                                  : _vm._e()
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
                   )
                 ],
                 1
@@ -107911,7 +108222,7 @@ var render = function() {
                   {
                     staticClass: "ticket",
                     staticStyle: { display: "none" },
-                    attrs: { id: "imprimir" }
+                    attrs: { id: "imprimir_cierre" }
                   },
                   [
                     _c("table", { staticStyle: { "font-size": "12px" } }, [
@@ -107924,10 +108235,26 @@ var render = function() {
                             },
                             attrs: { colspan: "2" }
                           },
-                          [_c("center", [_vm._v("Ticket de llegada")])],
+                          [_c("center", [_vm._v("Ticket de Salida")])],
                           1
                         )
                       ]),
+                      _vm._v(" "),
+                      _c(
+                        "tr",
+                        { staticStyle: { "border-bottom": "1px solid black" } },
+                        [
+                          _c("td", { attrs: { colspan: "1" } }, [
+                            _c("b", [_vm._v("Codigo de salida:")])
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { attrs: { colspan: "1" } }, [
+                            _vm._v(
+                              _vm._s(_vm.boucher_salida.egreso_vehiculo_id)
+                            )
+                          ])
+                        ]
+                      ),
                       _vm._v(" "),
                       _c(
                         "tr",
@@ -107938,18 +108265,18 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("td", { attrs: { colspan: "1" } }, [
-                            _vm._v(_vm._s(_vm.boucher.patente))
+                            _vm._v(_vm._s(_vm.boucher_salida.patente))
                           ])
                         ]
                       ),
                       _vm._v(" "),
                       _c("tr", [
                         _c("td", { attrs: { colspan: "1" } }, [
-                          _c("b", [_vm._v("fecha:")])
+                          _c("b", [_vm._v("fecha llegada:")])
                         ]),
                         _vm._v(" "),
                         _c("td", { attrs: { colspan: "1" } }, [
-                          _vm._v(_vm._s(_vm.boucher.fecha_cl))
+                          _vm._v(_vm._s(_vm.boucher_salida.fecha_ingreso))
                         ])
                       ]),
                       _vm._v(" "),
@@ -107959,7 +108286,47 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("td", { attrs: { colspan: "1" } }, [
-                          _vm._v(_vm._s(_vm.boucher.hora))
+                          _vm._v(_vm._s(_vm.boucher_salida.hora_ingreso))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", { attrs: { colspan: "1" } }, [
+                          _c("b", [_vm._v("fecha Salida:")])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { attrs: { colspan: "1" } }, [
+                          _vm._v(_vm._s(_vm.boucher_salida.fecha_egreso))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", { attrs: { colspan: "1" } }, [
+                          _c("b", [_vm._v("Hora de salida:")])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { attrs: { colspan: "1" } }, [
+                          _vm._v(_vm._s(_vm.boucher_salida.hora_egreso))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", { attrs: { colspan: "1" } }, [
+                          _c("b", [_vm._v("Tiempo de estadía:")])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { attrs: { colspan: "1" } }, [
+                          _vm._v(_vm._s(_vm.boucher_salida.intervalo))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", { attrs: { colspan: "1" } }, [
+                          _c("b", [_vm._v("Monto a pagar:")])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { attrs: { colspan: "1" } }, [
+                          _vm._v(_vm._s(_vm.boucher_salida.monto))
                         ])
                       ]),
                       _vm._v(" "),
@@ -107983,50 +108350,7 @@ var render = function() {
                             },
                             attrs: { colspan: "1" }
                           },
-                          [_vm._v("Satna maria, colo colo, Los Angeles.")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c(
-                          "td",
-                          { attrs: { colspan: "2" } },
-                          [
-                            _c(
-                              "center",
-                              [
-                                _c("small", [
-                                  _vm._v("Vea su tiempo escaneando este codigo")
-                                ]),
-                                _vm._v(" "),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c("qrcode-vue", {
-                                  attrs: {
-                                    value: _vm.url_value,
-                                    size: _vm.size,
-                                    level: "H"
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("small", [
-                                  _vm._v(
-                                    "Puede ver su tiempo en este enlace: " +
-                                      _vm._s(_vm.url_value)
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("barcode", {
-                                  attrs: {
-                                    value: _vm.boucher.patente,
-                                    options: { displayValue: true }
-                                  }
-                                })
-                              ],
-                              1
-                            )
-                          ],
-                          1
+                          [_vm._v(_vm._s(_vm.boucher_salida.ubicacion))]
                         )
                       ])
                     ])
@@ -108089,7 +108413,7 @@ var render = function() {
                       attrs: { slot: "header" },
                       slot: "header"
                     },
-                    [_c("span", [_vm._v("Lista de ingresos")])]
+                    [_c("span", [_vm._v("Lista de Salida")])]
                   ),
                   _vm._v(" "),
                   _c(
@@ -108101,7 +108425,7 @@ var render = function() {
                     [
                       _c("el-table-column", {
                         staticClass: "lol",
-                        attrs: { label: "ID", width: "180" },
+                        attrs: { label: "ID", width: "80" },
                         scopedSlots: _vm._u([
                           {
                             key: "default",
@@ -108224,6 +108548,41 @@ var render = function() {
                               return [
                                 _c("b", { staticStyle: { color: "red" } }, [
                                   _vm._v(_vm._s(scope.row.hora_egreso))
+                                ])
+                              ]
+                            }
+                          }
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { label: "HORAS DE ESTADÍA", width: "180" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                _c("b", { staticStyle: { color: "grey" } }, [
+                                  _vm._v(_vm._s(scope.row.intervalo))
+                                ])
+                              ]
+                            }
+                          }
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { label: "MONTO", width: "180" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                _c("b", { staticStyle: { color: "green" } }, [
+                                  _vm._v(
+                                    "+ " +
+                                      _vm._s(_vm.formatPrice(scope.row.monto))
+                                  )
                                 ])
                               ]
                             }

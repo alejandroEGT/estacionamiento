@@ -225,35 +225,61 @@
             
             <div>
              
-                <div class="ticket" id="imprimir" style="display:none">
+                <div class="ticket" id="imprimir_cierre" style="display:none">
                   <table style="font-size:12px">
                         <tr >
-                            <td style="border-bottom: 1px solid #17202A;" colspan="2"><center>Ticket de llegada</center></td>
+                            <td style="border-bottom: 1px solid #17202A;" colspan="2"><center>Ticket de Salida</center></td>
+                        </tr>
+
+                        <tr style="border-bottom:1px solid black;">
+                            <td  colspan="1"><b>Codigo de salida:</b></td>
+                            <td  colspan="1">{{boucher_salida.egreso_vehiculo_id}}</td>
                         </tr>
 
                         <tr style="border-bottom:1px solid black;">
                             <td  colspan="1"><b>Patente vehiculo:</b></td>
-                            <td  colspan="1">{{boucher.patente}}</td>
+                            <td  colspan="1">{{boucher_salida.patente}}</td>
                         </tr>
 
                         <tr >
-                            <td  colspan="1"><b>fecha:</b></td>
-                            <td  colspan="1">{{boucher.fecha_cl}}</td>
+                            <td  colspan="1"><b>fecha llegada:</b></td>
+                            <td  colspan="1">{{boucher_salida.fecha_ingreso}}</td>
                         </tr>
 
 
                         <tr >
                             <td  colspan="1"><b>Hora de llegada:</b></td>
-                            <td  colspan="1">{{boucher.hora}}</td>
+                            <td  colspan="1">{{boucher_salida.hora_ingreso}}</td>
+                        </tr>
+
+                        <tr >
+                            <td  colspan="1"><b>fecha Salida:</b></td>
+                            <td  colspan="1">{{boucher_salida.fecha_egreso}}</td>
+                        </tr>
+
+
+                        <tr >
+                            <td  colspan="1"><b>Hora de salida:</b></td>
+                            <td  colspan="1">{{boucher_salida.hora_egreso}}</td>
+                        </tr>
+
+                         <tr >
+                            <td  colspan="1"><b>Tiempo de estadía:</b></td>
+                            <td  colspan="1">{{boucher_salida.intervalo}}</td>
+                        </tr>
+
+                        <tr >
+                            <td  colspan="1"><b>Monto a pagar:</b></td>
+                            <td  colspan="1">{{boucher_salida.monto}}</td>
                         </tr>
 
                          <tr >
                             <td style="border-bottom: 1px solid #17202A;" colspan="1"><b>Calle:</b></td>
-                            <td style="border-bottom: 1px solid #17202A;" colspan="1">Satna maria, colo colo, Los Angeles.</td>
+                            <td style="border-bottom: 1px solid #17202A;" colspan="1">{{boucher_salida.ubicacion}}</td>
                         </tr>
                         
 
-                        <tr >
+                        <!-- <tr >
                             <td  colspan="2">
                                     <center><small>Vea su tiempo escaneando este codigo</small>
                                     <br>
@@ -265,7 +291,7 @@
                                     </center>
                             </td>
                             
-                        </tr>
+                        </tr> -->
                     </table>
 
                 </div>
@@ -299,7 +325,8 @@ export default {
                 patente:'-',
                 fecha:''
             },
-            get_patente:''
+            get_patente:'',
+            boucher_salida:{}
         }
     },
     components: {
@@ -366,7 +393,15 @@ export default {
             };
 
             axios.post('api/salida_vehiculo', data).then((res)=>{
+                if (res.data.estado == 'success') {
+                    this.boucher_salida = res.data.boleta[0];
 
+                    setTimeout(() => { 
+                        document.getElementById('imprimir_cierre').setAttribute("style", "display:block");
+                         printJS('imprimir_cierre', 'html');
+                         document.getElementById('imprimir_cierre').setAttribute("style", "display:none");
+                    }, 2000);
+                }
             });
         },
         url_params(name, json){
